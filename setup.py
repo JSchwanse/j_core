@@ -3,8 +3,9 @@ from setuptools import setup, find_packages
 setup(
     name="J_Core",
     author="jswa",
-    description="Private Python library to create and maintain business object endpoints.",
+    description="Python library to create and maintain business object endpoints.",
     packages=find_packages(),
+    package_data={"j_core": ["py.typed"]},
     include_package_data=True,
     classifiers=[
         "Environment :: Web Environment",

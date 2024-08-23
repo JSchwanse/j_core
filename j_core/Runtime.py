@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 
 from j_core.businessobject import BusinessObject
 from j_core.config import DatabaseConnection
@@ -10,11 +10,11 @@ class Datasource:
         self.db_connection = conn
         self.engine = create_engine(conn.get_connection_string())
 
-    def initialize(self):
+    def initialize(self) -> None:
         # activate schema...
         schema = self.db_connection.get_schema() if self.db_connection.get_schema() is not None else 'public'
         with self.engine.begin() as exec_connection:
-            exec_connection.execute(text('SET search_path TO ' + schema))
+            exec_connection.execute(text(f'SET search_path TO {schema}'))
 
         # ... and generate tables
         BusinessObject.create_tables(self.engine)
@@ -22,10 +22,10 @@ class Datasource:
 
 class Runtime:
     Datasource: Datasource
-    Session: sessionmaker
+    Session: sessionmaker[Session]
 
 
-def initialize(conn: DatabaseConnection):
+def initialize(conn: DatabaseConnection) -> None:
     datasource = Datasource(conn)
     datasource.initialize()
 
