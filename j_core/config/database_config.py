@@ -1,4 +1,4 @@
-from typing import Self, cast
+from typing import Self
 from xml.etree import ElementTree
 
 from j_core.exceptions.exceptions import ElementNotFoundException
@@ -56,7 +56,12 @@ class DatabaseConfiguration:
         # reset connections
         self.connections = {}
 
-        root = ElementTree.parse(cast(str, self.config_path))
+        # ensure config_path
+        if self.config_path is None:
+            raise FileNotFoundError('DatabaseConfiguration config_path is missing!')
+
+        # parse config
+        root = ElementTree.parse(self.config_path)
         el_alias_list = root.findall('Alias')
         el_conn_list = root.findall('Connection')
 
