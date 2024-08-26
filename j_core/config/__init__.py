@@ -1,3 +1,3 @@
 # exports
 from .database_config import DatabaseConfiguration
-from .database_config import DatabaseConnection
+from .database_config import DatabaseConnection as DatabaseConnection
