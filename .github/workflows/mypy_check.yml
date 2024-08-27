@@ -3,7 +3,10 @@ name: mypy check
 on:
   push:
     paths:
-      - '*.py'
+      - '**.py'
+      - '.github/workflows/mypy_check.yml'
+      - 'mypy.ini'
+      - 'requirements.txt'
 
 jobs:
   mypy:
