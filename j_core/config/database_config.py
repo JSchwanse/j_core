@@ -3,6 +3,8 @@ from xml.etree import ElementTree
 
 from j_core.exceptions.exceptions import ElementNotFoundException
 
+__all__ = ['DatabaseConnection', 'DatabaseConfiguration']
+
 
 class DatabaseConnection:
     def __init__(self, connection_config: dict[str, str | None]):

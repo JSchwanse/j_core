@@ -2,7 +2,9 @@ from typing import Type, Callable
 
 from .BusinessObject import BusinessObject
 
-Registry: dict[str, type[BusinessObject]] = {}
+__all__ = ['Registry', 'businessobject']
+
+Registry: dict[str, Type[BusinessObject]] = {}
 
 
 def businessobject(name: str) -> Callable[[Type[BusinessObject]], Type[BusinessObject]]:

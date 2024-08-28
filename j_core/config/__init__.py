@@ -1,3 +1,4 @@
 # exports
-from .database_config import DatabaseConfiguration
-from .database_config import DatabaseConnection as DatabaseConnection
+from .database_config import *
+
+__all__ = ['DatabaseConfiguration', 'DatabaseConnection']
