@@ -20,6 +20,7 @@ class BusinessObject:
     id: Mapped[int] = mapped_column(primary_key=True)
 
     def __init__(self, *args: Any, **kwargs: Any):
+        # Empty constructor to silence type hinters when calling the default constructor via businessobject.Registry
         pass
 
     def to_dictionary(self) -> dict[Any, Any]:
