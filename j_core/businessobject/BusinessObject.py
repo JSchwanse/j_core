@@ -20,8 +20,9 @@ class BusinessObject:
     id: Mapped[int] = mapped_column(primary_key=True)
 
     def __init__(self, *args: Any, **kwargs: Any):
-        # Empty constructor to silence type hinters when calling the default constructor via businessobject.Registry
-        pass
+        # Mostly empty constructor to silence type hinters when calling the
+        # default constructor via businessobject.Registry
+        super().__init__(*args, **kwargs)
 
     def to_dictionary(self) -> dict[Any, Any]:
         """ Must be used in conjunction with an object from sqlalchemy for the internal '__table__' field """
